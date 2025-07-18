@@ -8,10 +8,10 @@ clicking = False
 def hold_click():
     while True:
         if clicking:
-            pyautogui.mouseDown(button='left')  # Maintient appuyé
+            pyautogui.mouseDown(button='left')  # Click Holdé
             while clicking:
                 time.sleep(0.1)
-            pyautogui.mouseUp(button='left')  # Relâche quand désactivé
+            pyautogui.mouseUp(button='left')  # Click non Holdé
         time.sleep(0.1)
 
 def toggle_click():
@@ -19,11 +19,10 @@ def toggle_click():
     clicking = not clicking
     print("Clic maintenu" if clicking else "Clic relâché")
 
-# Lancer le thread de clic
 threading.Thread(target=hold_click, daemon=True).start()
 
-# Activer/désactiver avec F9
+# La Touche
 keyboard.add_hotkey('F9', toggle_click)
 
-# Garde le script en vie
+# Pour que le script soit toujours allumé sauf si tu fermes le script
 keyboard.wait()
